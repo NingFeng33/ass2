@@ -154,7 +154,16 @@ app.get("/login", (req, res) => {
 	var username = req.body.username;
 	var email = req.body.email;
 	var password = req.body.password;
-  
+	
+	const existingUser = await userCollection.findOne({
+		$or: [{ username: username }, { email: email }],
+	  });
+	
+	  if (existingUser) {
+		res.render("errorMessage", { error: "Username or email already exists." });
+		return;
+	  }
+
 	const schema = Joi.object({
 	  username: Joi.string().alphanum().max(20).required(),
 	  email: Joi.string().email().max(20).required(),
