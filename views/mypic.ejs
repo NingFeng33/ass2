@@ -1,0 +1,8 @@
+<%- include("templates/header") %> <% if (mypic == 1) { %>
+    <img src="/<%= images[0] %>" style="width: 7500px" />
+    <% } else if (mypic == 2) { %>
+    <img src="/<%= images[1] %>" style="width: 750px" />
+    <% } else if (mypic == 3) { %>
+    <img src="/<%= images[2] %>" style="width: 750px" />
+    <% } else { %> Invalid mypic id: <%= mypic %> <% } %> <%-
+    include("templates/footer") %>
